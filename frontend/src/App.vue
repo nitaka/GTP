@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <LoaderPages />
     <NavBar />
     <router-view/>
   </div>
@@ -9,10 +10,12 @@
 <script>
 // import bar de navigation
 import NavBar from "./components/NavBar.vue"
+import LoaderPages from "./components/LoaderPages.vue"
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    LoaderPages
   }
 }
 </script>

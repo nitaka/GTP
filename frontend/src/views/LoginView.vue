@@ -64,7 +64,6 @@
       sendMessage() {
           document.querySelector('.cont').classList.toggle('s--signup'); 
       },
-    
        //Crée user
       sendSignup() {
         const regexEmail = new RegExp(/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -100,7 +99,6 @@
               .catch(error => console.log(error));
             })
             .catch(error => console.log(error));
-            alert("Bienvenue sur le reseau de gestion des activités ");
         } else if (regexName.test(this.signup.prenom) === false) {
           alert("Erreur prenom");
         } else if (regexEmail.test(this.signup.email) === false) {
@@ -154,7 +152,6 @@
     },
   }
 </script>
-
 
 <style scoped lang="scss">
 
@@ -226,7 +223,6 @@ $diffRatio: ($contW - $imgW) / $contW;
   transition: transform $switchAT ease-in-out;
   padding: 50px 30px 0;
 }
-
 
 .sub-cont {
   overflow: hidden;

@@ -1,18 +1,15 @@
 <template>
   <div class="home">
     <h1>Fiche d'activité</h1>
-    
     <form v-on:submit.prevent>
       <label for="name">Nom: </label>
       <select v-model="hidData" @change="oneTask()" name="name" id="name" required>
           <option v-for="users in allUsers" :key="users.id">{{ users.name }}</option>
       </select>
-
       <label for="libelle">
         Libellé activité: 
       </label>
       <input type="text" placeholder="Libellé" id="libelle" name="libelle" required />
-      
       <label for="hoursBegin">
         Heures début: 
       </label>
@@ -22,9 +19,7 @@
         Heures fin: 
       </label>
       <input type="time" id="hoursEnd" name="hoursEnd" @change="timeLimit()" />
-      
       <button @click="addPost()" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Valider</button>
-    
     </form>
 
     <table id="task">
@@ -47,8 +42,6 @@
         </tr>
       </tbody>
     </table>
-
-
   </div>
 </template>
 
@@ -105,20 +98,20 @@ export default {
       
       if (self.name && self.libelle && self.hoursBegin && self.hoursEnd ) {
         axios.post("http://localhost:3000/api/post", fd, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${self.token}`,
-            },
-          })
-          .then(function (res) {
-            console.log(res);
-            document.querySelector("#name").value = null;
-            document.querySelector("#libelle").value = null;
-            document.querySelector("#hoursBegin").value = null;
-            document.querySelector("#hoursEnd").value = null;
-            self.getPost();
-          })
-          .catch(error => console.log(error));
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${self.token}`,
+          },
+        })
+        .then(function (res) {
+          console.log(res);
+          document.querySelector("#name").value = null;
+          document.querySelector("#libelle").value = null;
+          document.querySelector("#hoursBegin").value = null;
+          document.querySelector("#hoursEnd").value = null;
+          self.getPost();
+        })
+        .catch(error => console.log(error));
       }
     },
 
@@ -132,18 +125,17 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
 
       axios.get("http://localhost:3000/api/user", {
-        
-            headers: { Authorization: `Bearer ${this.token}` },
+          headers: { Authorization: `Bearer ${this.token}` },
         })
         .then((res) => (this.allUsers = res.data))
         .catch(function (error) {
@@ -151,9 +143,8 @@ export default {
             router.push("/");
           }
         });
-        
-
     },
+
     getPostVerso() {
       if (document.cookie) {
         this.token = document.cookie.split("; ").find((row) => row.startsWith("user-token=")).split("=")[1];
@@ -164,15 +155,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     getByHoursEnd() {
@@ -185,16 +175,16 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
+
     getByHoursEndVerso() {
       if (document.cookie) {
         this.token = document.cookie.split("; ").find((row) => row.startsWith("user-token=")).split("=")[1];
@@ -205,15 +195,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     getByName() {
@@ -226,15 +215,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     getByNameVerso() {
@@ -247,15 +235,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     getByLibelle() {
@@ -268,15 +255,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     getByLibelleVerso() {
@@ -289,15 +275,14 @@ export default {
       .then((res) => {
         this.postsRecive = res.data;
         if (this.posts != this.postsRecive) {
-            this.posts = this.postsRecive;
+          this.posts = this.postsRecive;
         }
       })
       .catch(function (error) {
         if (error.res && error.res.status === 401) {
-            router.push("/");
+          router.push("/");
         }
       });
-
     },
 
     deletePost(postId) {
@@ -315,32 +300,25 @@ export default {
     },
 
     oneTask() {
-
       this.hidData = document.querySelector("#name").value;
-      const indexTab = 0;
       this.task = document.getElementById("task");
+
+      const indexTab = 0;
       const lignes = this.task.getElementsByTagName("tr");
 
       for (let i = 0 ; i < lignes.length; i++){
 
         const colonnes = lignes[i].getElementsByTagName("td");
-        
         if(colonnes.length > 0) {  //pour éviter erreur avec "th"
           if(colonnes[indexTab].innerHTML === this.hidData ) {
             this.hidData = null;
             alert("Une tâche à la fois !")
           }
-           
         }
       }
-      
     },
 
     timeLimit() {
-
-      //"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"
-      //15,14,13,12,11,10,09,08,07,06,05,04,03,02,01
-      // if((stringNumEnd >= stringNum + 9) || (stringNum == test[0] && stringNumEnd == stringNum -15) ) 
       
       this.hoursBegin = document.querySelector("#hoursBegin").value;
       this.hoursEnd = document.querySelector("#hoursEnd").value;
@@ -349,149 +327,32 @@ export default {
       const hoursEn = parseFloat(this.hoursEnd);
 
       const blindSpot = [16,17,18,19,20,21,22,23];
-      // const blindSpotCal = [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
+      
+      for(const index of blindSpot ) {
+        if((hoursBeg == index && hoursEn == hoursBeg - 15) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 14) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 13) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 12) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 11) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 10) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 9) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 8) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 7) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 6) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 5) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 4) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 3) ||
+          (hoursBeg == index && hoursEn == hoursBeg - 2) || 
+          (hoursBeg == index && hoursEn == hoursBeg - 1)){ 
 
+          document.querySelector("#hoursEnd").value = null;
+          alert("L'heure réglementaire de 8h est dépassé")
 
-      if((hoursEn >= hoursBeg + 9) || 
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 15) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 15) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 14) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 14) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 13) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 13) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 12) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 12) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 11) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 11) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 10) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 10) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 9) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 9) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 8) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 8) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 7) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 7) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 6) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 6) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 5) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 5) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 4) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 4) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 3) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 3) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 2) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 2) ||
-
-        (hoursBeg == blindSpot[0] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[1] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[2] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[3] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[4] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[5] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[6] && hoursEn == hoursBeg - 1) ||
-        (hoursBeg == blindSpot[7] && hoursEn == hoursBeg - 1)
-
-      ) {
-        document.querySelector("#hoursEnd").value = null;
-        console.log("L'heure réglementaire de 8h est dépassé")
-        this.getPost()  
+        } else if(hoursEn >= hoursBeg + 9) {
+          document.querySelector("#hoursEnd").value = null;
+          alert("L'heure réglementaire de 8h est dépassé")
+          break;
+        }
       }
     },
   },
@@ -506,7 +367,7 @@ export default {
     : null);
 
     axios.post("http://localhost:3000/api/user",{ 
-        userId: this.userId
+      userId: this.userId
     },
     {
       headers: {
@@ -514,14 +375,14 @@ export default {
       },
     })
     .then((res) => {
-        this.user = res.data[0];
+      this.user = res.data[0];
     })
     .catch(function (error) {
-        if (error.res && error.res.status === 400) {
-            document.cookie = "userId=";
-            document.cookie = "user-token=";
-            router.push("/");
-        }
+      if (error.res && error.res.status === 400) {
+        document.cookie = "userId=";
+        document.cookie = "user-token=";
+        router.push("/");
+      }
     });
 
     this.getPost();
@@ -588,7 +449,6 @@ table {
   width: 80%;
   margin: 30px auto 0px auto;
 }
-
 
 table,td {
   padding: 5px;

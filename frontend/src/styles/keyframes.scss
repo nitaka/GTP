@@ -1,0 +1,29 @@
+  // LOADER //
+
+  @keyframes anim {
+    0% {
+      opacity: 0.8;
+      transform: translateY(0px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes loader{
+    0% {
+      opacity: 1;
+    }
+  
+    90%, 99% {
+      opacity: 1;
+      z-index: 2;
+    }
+  
+    100% {
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+  

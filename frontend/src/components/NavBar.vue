@@ -123,19 +123,6 @@ a {
 }
 
 @media(max-width:675px) {
-
-  .img-profil {
-    height: 0;
-    padding: 0;
-        &__user {
-            height: 80px;
-            width: 80px;
-            margin-left: 20px;
-            position: absolute;
-            left: 0;
-            top: 15px;
-        }
-    }
   
   
   #navbar {
@@ -180,22 +167,6 @@ a {
     justify-content: center;
     padding: 15px 0px;
     background-color: #1e2631;
-  }
-}
-
-@media(max-width:465px) {
-
-.img-profil {
-  height: 0;
-  padding: 0;
-      &__user {
-          height: 80px;
-          width: 80px;
-          margin-left: 20px;
-          position: absolute;
-          left: 0;
-          top: 200px;
-      }
   }
 }
 
